@@ -16,6 +16,10 @@
                     {{ __('Blog') }}
                 </x-nav-link>
 
+                <x-nav-link href="{{ route('chat.index') }}" :active="request()->routeIs('chat.index')">
+                    {{ __('Live Chat') }}
+                </x-nav-link>
+
             </div>
         </div>
     </div>

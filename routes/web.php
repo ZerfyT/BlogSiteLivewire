@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,10 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::controller(PostController::class)->group(function () {
     Route::get('/blog', 'index')->name('posts.index');
+});
+
+Route::controller(ChatController::class)->group(function () {
+    Route::get('/chat', 'index')->name('chat.index');
 });
 
 Route::middleware([
