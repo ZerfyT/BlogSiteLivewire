@@ -36,5 +36,8 @@ class Message extends Model
         return $this->belongsTo(User::class, 'receiver_id');
     }
 
-    
+    public function senderIsAuth()
+    {
+        return $this->sender_id == auth()->user()->id;
+    }
 }

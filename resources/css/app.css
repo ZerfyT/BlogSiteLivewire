@@ -3,5 +3,60 @@
 @tailwind utilities;
 
 [x-cloak] {
-    display: none;
+  display: none;
+}
+
+
+.chat-container {
+    width: inherit;
+    height: calc(100vh - 100px);
+}
+
+/* User list panel */
+
+.chat-container .left-side {
+  width: 200px;
+  background-color: #f2f2f2;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.chat-container .user-list-item {
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.chat-container .user-list-item:hover {
+  background-color: #eee;
+}
+
+/* Chat messages panel */
+
+.chat-container .chat-messages {
+  background-color: #fff;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.chat-container .chat-message {
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.chat-container .chat-message-sender {
+  font-weight: bold;
+}
+
+.chat-container .chat-message-content {
+  margin-top: 5px;
+}
+
+/* Chat message box */
+
+.chat-container .chat-message-box {
+  /* padding-top: 10px; */
+  /* border-top: 1px solid #ccc; */
+  /* border-radius: 5px; */
 }
