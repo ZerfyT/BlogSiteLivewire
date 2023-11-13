@@ -15,6 +15,10 @@ class ChatList extends Component
     public $connversation;
     public $messages;
 
+    protected $listeners = [
+        'echo:chat.101, MessageSent' => 'broadcastMessageReceived',
+    ];
+
     public function mount()
     {
         $this->authId = auth()->id();
@@ -37,6 +41,22 @@ class ChatList extends Component
     {
         $newMessage = Message::where('id', $messageId)->get()->first();
         $this->messages->push($newMessage);
+    }
+
+    // public function getListeners()
+    // {
+    //     $authId = auth()->user()->id;
+    //     // dd($authId);
+    //     return [
+    //         // Private Channel
+    //         "echo:chat.{$authId},MessageSent" => 'broadcastMessageReceived',
+    //     ];
+    // }
+
+    // #[On('echo-private:chat.{receiverId},MessageSent')]
+    public function broadcastMessageReceived($event)
+    {
+        dd($event);
     }
 
     public function render()

@@ -2,8 +2,12 @@
 
 namespace App\Livewire\Chat;
 
+use App\Events\MessageSent;
 use App\Models\Conversation;
 use App\Models\Message;
+use App\Models\User;
+use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -20,6 +24,8 @@ class SendMessage extends Component
 
     public function saveMessage()
     {
+        $breeds = Http::get('https://dog.ceo/api/breeds/list/random/5')['message'];
+        dd($breeds);
         $conversation = Conversation::find($this->conversationId);
         $message = Message::create([
             'conversation_id' => $this->conversationId,
@@ -30,7 +36,10 @@ class SendMessage extends Component
         $conversation->last_time_message = $message->created_at;
         $conversation->save();
 
+        // dd($message->sender);
+
         $this->dispatch('updateMessages', $this->conversationId, $message->id);
+        event(new MessageSent($message->sender, $message->receiver, $message, $conversation));
     }
     public function render()
     {

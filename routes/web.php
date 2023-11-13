@@ -41,4 +41,4 @@ Route::middleware([
 
 // Livewire Routes
 Route::get('/users', ChatCreate::class)->name('users');
-Route::get('/chat{key?}', Main::class)->name('chat');
+Route::get('/livechat{key?}', Main::class)->name('chat');
